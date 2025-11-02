@@ -12,12 +12,24 @@ namespace AnyQuestions
 
             bool choosing = true;
 
+            //bool isReady = false;
+
             bool isAnswering = false;
 
             while (choosing)
             {
                 drawMenu(ref cursorPos, ref choosing);
             }
+
+            //isReady = true;
+
+            //while (isReady)
+            //{
+            //    // ??
+            //}
+
+
+
 
         }
 
@@ -126,9 +138,15 @@ namespace AnyQuestions
                 string directory = Console.ReadLine();
 
                 // checking correct file name
-                if (directory.Substring(directory.Length - 4, 4) != ".txt")
+                if (directory.Length > 3)
+                {
+                    if (directory.Substring(directory.Length - 4, 4) != ".txt")
+                        directory = $"{directory}.txt";
+                }
+                else if (directory != null)
+                {
                     directory = $"{directory}.txt";
-
+                }
                 if (File.Exists(directory))
                 {
                     // Saving in the latest path
