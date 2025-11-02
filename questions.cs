@@ -42,6 +42,7 @@ namespace AnyQuestions
                 if (!File.Exists(directory))
                 {
                     Console.WriteLine($"Can't find: {directory}");
+
                     return (quests, answers);
                 }
 
@@ -50,6 +51,7 @@ namespace AnyQuestions
                 if (allLines.Length == 0)
                 {
                     Console.WriteLine("File is empty.");
+
                     return (quests, answers);
                 }
 
@@ -74,6 +76,7 @@ namespace AnyQuestions
             catch (Exception ex)
             {
                 Console.WriteLine($"Error for readind file: {ex.Message}");
+
                 return (quests, answers);
             }
         }
@@ -123,7 +126,18 @@ namespace AnyQuestions
                 }
             }
 
-            Console.WriteLine("Program ended.");
+            Console.ForegroundColor= ConsoleColor.Green;
+
+            Console.WriteLine("Program ended. Repeat? Y / N");
+
+            key = Console.ReadKey().Key;
+
+            Console.WriteLine();
+
+            if (key == ConsoleKey.Y)
+            {
+                count += Print(quests, answers, timer);
+            }
 
             return count;
         }
@@ -145,6 +159,8 @@ namespace AnyQuestions
         // returning lowercase input-answer (for example, "YES" == "yes")
         internal (string, string) Compare(string input, string answer) =>
             (input.ToLower(), answer.ToLower());
+
+
 
     }
 }
